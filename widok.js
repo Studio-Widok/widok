@@ -1,5 +1,5 @@
-const $ = require('cash-dom');
-const throttle = require('widok-throttle');
+import throttle from 'widok-throttle';
+import $ from 'cash-dom';
 
 const $window = $(window);
 const $body = $('body');
@@ -44,4 +44,4 @@ $window.on({
 
 document.addEventListener('ready', widok.sizeCheck);
 
-if (typeof module !== 'undefined') module.exports = widok;
+export default widok;
