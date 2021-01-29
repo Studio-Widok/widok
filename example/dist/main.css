@@ -1,0 +1,1 @@
+body{padding-top:80vh;min-height:100vh;margin:0;background-color:#eee;color:#333}body #scrolled{opacity:.25}body #scrolled,body #not-scrolled{transition:.3s;padding:.5em;font-size:2em;text-align:center}body.scrolled #scrolled{opacity:1}body.scrolled #not-scrolled{opacity:.25}

@@ -1,0 +1,27 @@
+body {
+  padding-top: 80vh;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #eee;
+  color: #333;
+
+  #scrolled {
+    opacity: 0.25;
+  }
+  #scrolled,
+  #not-scrolled {
+    transition: 0.3s;
+    padding: 0.5em;
+    font-size: 2em;
+    text-align: center;
+  }
+
+  &.scrolled {
+    #scrolled {
+      opacity: 1;
+    }
+    #not-scrolled {
+      opacity: 0.25;
+    }
+  }
+}

@@ -1,17 +1,8 @@
 import throttle from 'widok-throttle';
-import $ from 'cash-dom';
-
-const $window = $(window);
-const $body = $('body');
-let isPageScrolled = false;
 
 const widok = {
-  h: 0,
-  w: 0,
-  s: 0,
-  sizeCheck: () => {
-    widok.h = $window.height();
-    widok.w = $window.width();
+  isPageScrolled: false,
+  sizeCheck: function () {
     document.documentElement.style.setProperty(
       '--vh',
       `${window.innerHeight / 100}px`
@@ -20,28 +11,24 @@ const widok = {
     widok.scrollCheck();
     window.dispatchEvent(new CustomEvent('afterLayoutChange'));
   },
-  scrollCheck: () => {
-    widok.s = window.scrollY;
-    if (widok.s > 10) {
-      if (!isPageScrolled) {
-        $body.addClass('scrolled');
-        isPageScrolled = true;
+  scrollCheck: function () {
+    if (window.scrollY > 10) {
+      if (!this.isPageScrolled) {
+        document.body.classList.add('scrolled');
+        this.isPageScrolled = true;
       }
     } else {
-      if (isPageScrolled) {
-        $body.removeClass('scrolled');
-        isPageScrolled = false;
+      if (this.isPageScrolled) {
+        document.body.classList.remove('scrolled');
+        this.isPageScrolled = false;
       }
     }
   },
 };
 
-$window.on({
-  resize: throttle(100, widok.sizeCheck),
-  load: widok.sizeCheck,
-  scroll: widok.scrollCheck,
-});
-
+window.addEventListener('resize', throttle(100, widok.sizeCheck));
+window.addEventListener('load', widok.sizeCheck);
+window.addEventListener('scroll', widok.scrollCheck);
 document.addEventListener('ready', widok.sizeCheck);
 
 export default widok;
