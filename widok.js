@@ -2,17 +2,20 @@ import throttle from 'widok-throttle';
 
 const widok = {
   isPageScrolled: false,
+  s: 0,
+  w: 0,
+  h: 0,
   sizeCheck: function () {
-    document.documentElement.style.setProperty(
-      '--vh',
-      `${window.innerHeight / 100}px`
-    );
+    this.h = window.innerHeight;
+    this.w = window.innerWidth;
+    document.documentElement.style.setProperty('--vh', `${this.h / 100}px`);
     window.dispatchEvent(new CustomEvent('layoutChange'));
     widok.scrollCheck();
     window.dispatchEvent(new CustomEvent('afterLayoutChange'));
   },
   scrollCheck: function () {
-    if (window.scrollY > 10) {
+    this.s = window.scrollY;
+    if (this.s > 10) {
       if (!this.isPageScrolled) {
         document.body.classList.add('scrolled');
         this.isPageScrolled = true;
