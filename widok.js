@@ -6,24 +6,24 @@ const widok = {
   w: 0,
   h: 0,
   sizeCheck: function () {
-    this.h = window.innerHeight;
-    this.w = window.innerWidth;
-    document.documentElement.style.setProperty('--vh', `${this.h / 100}px`);
+    widok.h = window.innerHeight;
+    widok.w = window.innerWidth;
+    document.documentElement.style.setProperty('--vh', `${widok.h / 100}px`);
     window.dispatchEvent(new CustomEvent('layoutChange'));
     widok.scrollCheck();
     window.dispatchEvent(new CustomEvent('afterLayoutChange'));
   },
   scrollCheck: function () {
-    this.s = window.scrollY;
-    if (this.s > 10) {
-      if (!this.isPageScrolled) {
+    widok.s = window.scrollY;
+    if (widok.s > 10) {
+      if (!widok.isPageScrolled) {
         document.body.classList.add('scrolled');
-        this.isPageScrolled = true;
+        widok.isPageScrolled = true;
       }
     } else {
-      if (this.isPageScrolled) {
+      if (widok.isPageScrolled) {
         document.body.classList.remove('scrolled');
-        this.isPageScrolled = false;
+        widok.isPageScrolled = false;
       }
     }
   },
